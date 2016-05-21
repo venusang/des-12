@@ -1,10 +1,19 @@
 # des-12
 
-Another Rapid Prototype made from scratch with HTML, CSS, JavaScript
+This prototype was designed and developed to demonstrate the live-interaction involved when User edits  existing assessment content.
 
-This prototype was built to demo proposed features and design improvements to an existing internal web-based application.
+The content used for this prototype is real content that could be used for student assessments.
 
-This prototype is not database driven and the code is static. 
+My Role:
+- UI and UX Design
+- Front-End Developer
 
-Users are welcome to experience this prototype at http://missdemilo.com/cs/des-12/.
+Technologies Used:
+- HTML
+- CSS
+- JavaScript
+
+Packages Used:
+- Bootstrap 
+
 
