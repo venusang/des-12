@@ -1,0 +1,185 @@
+.title-nav{
+  font-size: 20px;
+  padding: 20px 0 0 15px;
+}
+
+.title-nav:hover,
+.title-nav:focus{
+  cursor: pointer;
+}
+
+nav.navbar{
+  margin-bottom:0;
+}
+
+nav a:hover{
+  cursor: pointer;
+}
+.ui-widget{
+  font-family: inherit;
+}
+.ui-corner-all{
+  border-radius: 4px;
+  border-color:#ddd;
+}
+.ui-widget-header{
+  background: none;
+  border: none;
+  border-radius: 0;
+  border-bottom:1px solid #ddd;
+}
+
+.ui-dialog{
+  box-shadow: 0 5px 15px rgba(0,0,0,.5);
+}
+
+#preview-btn{
+  position: absolute;
+  right: 0;
+  z-index: 100;
+}
+
+#add-supporting-materials .input-group-addon,
+#filename1 .input-group-addon{
+  background: none;
+  border: none;
+  font-weight: bold;
+}
+
+#add-supporting-materials .input-group,
+#filename1 .input-group{
+  float:inherit;
+}
+
+.content{
+  display:none;
+}
+
+.input-group .form-control:last-child{
+  border-radius: 4px;
+}
+
+#summary-feedback .formWrapper{
+  margin:0 0 0 15px;
+}
+
+.page-header{
+  margin-top:0;
+}
+
+.extruder.right .flap{
+  width: auto;
+  top: 0;
+  display: none;
+}
+.extruder .flap:hover{
+  cursor: pointer;
+}
+.extruder .preview-wrapper{
+  max-width: 660px;
+}
+  .extruder .extruder-content {
+    background:#fff;
+  }
+  .extruder.right .extruder-content{
+    border-left:3px solid #ddd;
+  }
+  .extruder .text {
+    font:14px/16px Arial,Helvetica,sans-serif;
+    color:gray;
+    padding:20px;
+    border-bottom:1px solid #333333;
+  }
+
+
+.btn-cp{
+  color: #fff;
+  background-color: #80B312;
+  border-color: #ccc;
+}
+.btn-cp:hover,.btn-cp.active,
+.open>.dropdown-toggle.btn-cp{
+  background-color: #fff;
+}
+
+.nav>li{
+  left: 16px;
+}
+
+.content-wrapper{
+  padding: 1em;
+}
+
+.supporting-materials-list li{
+  padding: 0.50em;
+  position: relative;
+  border-radius:4px;
+  border:1px solid #fff;
+}
+
+.supporting-materials-list li:hover{
+  border:1px dashed #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.supporting-materials-list li .remove-item {
+  position:absolute;
+  top: 0px;
+  right: 12px;
+  transform: rotate(45deg);
+  font-size: 22px;
+  color: #cccccc;
+  cursor: pointer;
+}
+
+.supporting-materials-list li .remove-item:hover{
+  color:#999;
+}
+
+.wiggi-wiz-toolbar{
+  padding:10px;
+  background:#ccc;
+}
+
+.panel-primary>.panel-heading{
+  background-color:#008BC9;
+}
+
+.panel-primary>.panel-heading+.panel-collapse>.panel-body{
+  border:3px solid #008BC9;
+}
+
+
+
+.editable{
+  padding:6px;
+}
+.editable:focus{
+  border:1px solid #ccc;
+  width: 200px;
+  padding:5px;
+  border-radius: 4px;
+
+}
+
+.editable:focus span{
+  background:#b4d5fe;
+}
+.editable a:hover{
+  cursor: pointer;
+}
+
+
+.edit-wrapper .editable {
+    width: 100%;
+    height: 600px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+.scoreNumber{
+  font-size:30px;
+  line-height:30px;
+}

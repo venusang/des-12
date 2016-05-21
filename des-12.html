@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script data-require="jquery@*" data-semver="2.1.1" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script data-require="bootstrap@3.1.1" data-semver="3.1.1" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  <link data-require="fontawesome@4.0.3" data-semver="4.0.3" rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+  <link data-require="bootstrap-css@3.2.0" data-semver="3.2.0" rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+
+
+  <link rel="stylesheet" href="build.css" />
+  <link href="mbExtruder.css" media="all" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="inc/jquery.hoverIntent.min.js"></script>
+  <script type="text/javascript" src="inc/jquery.mb.flipText.js"></script>
+  <script type="text/javascript" src="inc/mbExtruder.js"></script>
+  
+
+  <script src="des-12.js"></script>
+  <link rel="stylesheet" href="des-12.css" />
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="nav-container row">
+      <nav class="navbar-default">
+        <ul class="list-unstyled list-inline">
+          <li><div class="title-nav">Untitled</div></li>
+          <li>
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                Actions
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" id="nav-new">New</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" id="nav-open">Open...</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" id="nav-copy">Copy...</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" id="nav-archive">Archive</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" id="nav-delete">Delete</a></li>
+              </ul>
+            </div>
+          </li>
+          <li><div class="saveMessaging"></div>
+        </ul>
+
+
+        <ul class="nav nav-tabs" role="tablist" id="mainTabNav">
+          <li class="active"><a href="#questions" data-toggle="tab" role="tab">Questions</a></li>
+          <li class="dropdown">
+            <a href="#"class="dropdown-toggle" data-toggle="dropdown">Profile <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#profile" tabindex="-1" role="tab" data-toggle="tab">Profile Information</a></li>
+              <li><a href="#metadata" tabindex="-1" role="tab" data-toggle="tab">Metadata</a>
+              </li>
+            </ul>
+          </li>
+
+          <li><a href="#supporting-materials" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown">Supporting Materials</a></li>
+        </ul>
+      </nav>
+    </div><!-- nav-container -->
+
+  
+    <div class="tab-content content-wrapper">
+    
+<!-- ************************************************ QUESTIONS ********************************************************** -->
+  <div id="questions" class="tab-pane fade in active row">
+      <div class="row">
+        <div class="col-md-6">
+          <a id="btnEditPreview" class="btn btn-default btn-warning">Preview <i class="fa fa-toggle-left"></i></a>
+          <button class="btn btn-default" id="btn-scoring">Scoring pts (%)</button>
+         <hr />
+       </div>
+      </div><!-- row -->
+
+          
+
+      <div class="row">
+          <div class="configWrapper click-to-top">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Short Answer</h4>
+              </div>
+              <div class="modal-body">
+                <img src="config-panel.png" class="img-responsive" />
+              </div>
+            </div><!-- /.modal-content -->
+          </div>
+
+           <div class="shortAnswerConfigPanel click-to-top">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Short Answer</h4>
+              </div>
+              <div class="modal-body">
+                <img src="short-answer-config-panel.png" class="img-responsive" />
+              </div>
+            </div><!-- /.modal-content -->
+          </div>
+
+        <div class="col-md-6">
+          
+
+          <div class="wiggi-wiz-toolbar">
+            <div class="btn-group">
+              <button class="btn btn-cp">Insert Question <span class="caret"></span></button>
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn btn-default btn-sm btn-small">
+                  Normal
+                  <span class="caret"></span>
+                </button>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.bold}" ng-click="toolbarButtonClicked('bold')">
+              <i class="fa fa-bold"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.italic}" ng-click="toolbarButtonClicked('italic')">
+              <i class="fa fa-italic"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.underline}" ng-click="toolbarButtonClicked('underline')">
+              <i class="fa fa-underline"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.superscript}" ng-click="toolbarButtonClicked('superscript')">
+              <i class="fa fa-superscript"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.subscript}" ng-click="toolbarButtonClicked('subscript')">
+              <i class="fa fa-subscript"></i>
+              </button>
+              </div>
+              <div class="btn-group">
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.insertunorderedlist}" ng-click="toolbarButtonClicked('insertunorderedlist')">
+              <i class="fa fa-list-ul"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.insertorderedlist}" ng-click="toolbarButtonClicked('insertorderedlist')">
+              <i class="fa fa-list-ol"></i>
+              </button>
+              </div>
+              <div class="btn-group">
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.justifyLeft}" ng-click="toolbarButtonClicked('justifyLeft')">
+              <i class="fa fa-align-left"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.justifyCenter}" ng-click="toolbarButtonClicked('justifyCenter')">
+              <i class="fa fa-align-center"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.justifyRight}" ng-click="toolbarButtonClicked('justifyRight')">
+              <i class="fa fa-align-right"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-click="toolbarButtonClicked('indent')">
+              <i class="fa fa-indent"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-click="toolbarButtonClicked('outdent')">
+              <i class="fa fa-dedent"></i>
+              </button>
+            </div>
+            <div class="btn-group">
+              <button type="button" class="btn btn-default btn-sm btn-small" data-toggle="dropdown">
+                <i class="fa fa-text-height"></i>
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a>1.0</a></li>
+                <li><a>1.5</a></li>
+                <li><a>2.0</a></li>
+              </ul>
+            </div>
+            <div class="btn-group">
+            <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-click="toolbarButtonClicked('hr')">
+            <i class="fa fa-minus"></i>
+            </button>
+            </div>
+            <div class="btn-group">
+            <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-click="toolbarButtonClicked('image')">
+            <i class="fa fa-picture-o"></i>
+            </button>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-click="toolbarButtonClicked('table')">
+              <i class="fa fa-table"></i>
+              </button>
+            </div>
+
+            <div class="btn-group">
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-click="toolbarButtonClicked('footnotes')">
+              Footnote
+              </button>
+            </div> 
+            <div class="btn-group">
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-click="toolbarButtonClicked('corespring-video')"><i class="fa fa-film"></i>
+              </button>
+            </div> 
+            <div class="btn-group">
+            <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-click="toolbarButtonClicked('a')">
+            <i class="fa fa-link"></i>
+            </button>
+            </div>
+          </div><!--wiggi-wiz-toolbar-->
+          <div class="edit-wrapper">
+            <div class="col-md-6 editable">
+              <div id="editPreview" class="click-to-top preview-panel {title:'Item Preview ', url:'parts/edit-item-preview.html'}"></div>
+              <img src="short-answer-fpo.png" id="btn-shortanswer" />
+              <br />
+              <img src="graph-edit2.png" id="btn-config" />
+            </div><!-- col-md-6 -->
+          </div>
+          <br />
+          <div class="panel panel-default summary-feedback-panel panel-primary" style="display: block;">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" href="#feedback">Add Student Feedback (optional) <i class="fa fa-comment-o"></i> </a>
+              </h4>
+            </div><!-- panel-heading-->
+
+            <div id="feedback" class="panel-collapse collapse" style="height: auto;">
+              <div class="panel-body">
+                <textarea class="form-control" rows="3"></textarea>
+                <div class="toolbar">
+                    <div class="wiggi-wiz-toolbar">
+                      <div class="btn-group">
+                        <button class="btn btn-default btn-sm btn-small" tabindex="-1"><i class="fa fa-bold"></i></button>
+                        <button class="btn btn-default btn-sm btn-small" tabindex="-1"><i class="fa fa-italic"></i></button>
+                      </div>
+                      <div class="btn-group">
+                        <button class="btn btn-default btn-sm btn-small" tabindex="-1"><i class="fa fa-picture-o"></i></button>
+                      </div>
+                    </div>
+                 </div>
+              </div>
+            </div><!-- panel-body -->
+          </div><!-- panel -->
+
+        </div><!-- col-md-6 -->
+      </div><!-- row -->
+
+
+   </div><!-- questions -->
+
+
+<!-- ************************************************ PROFILE ************************************************************* -->
+    <div id="profile" class="tab-pane fade in row">
+      <div class="row">
+        <div class="col-md-6">
+          <a id="btnPreviewProfile" class="btn btn-default btn-warning">Preview Profile Information  <i class="fa fa-toggle-left"></i></a>
+          <hr />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <img src="edit-profile.png">
+        </div>
+      </div>
+
+      <!-- Profile Information Preview Panel -->
+      <div id="profilePreview" class="preview-panel {url:'parts/profile-preview.html'}"></div>
+    </div>
+
+<!-- ************************************************ METADATA ************************************************************ -->
+    <div id="metadata" class="tab-pane fade in row">
+      <div class="row">
+        <div class="col-md-6">
+          <a id="btnPreviewMetadata" class="btn btn-default btn-warning">Preview Metadata Information  <i class="fa fa-toggle-left"></i></a>
+          <hr />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+        </div>
+      </div>
+    </div>
+
+<!-- ************************************************ SUPPORTING MATERIALS ************************************************ -->
+    <div id="supporting-materials" class="tab-pane fade in row">
+      <div class="col-md-4 row" id="leftNav">
+        <div class="page-header">
+         <button id="btn-add-supporting-materials"class="btn btn-default"><i class="fa fa-plus"></i> add new supporting material</button>
+        </div>
+
+
+        <h4>SCORING GUIDE</h4>
+        <ul class="list-unstyled supporting-materials-list scoring-guide-list">
+          <li><a href="#filename1" class="nav-filename1">SAT Scoring Guide</a><i class="fa fa-trash-o"></i></li>
+          <li><a href="#filename2" class="nav-filename2">Scoring Guide 2</a><i class="fa fa-trash-o"></i></li>
+        </ul>
+
+        <h4>STUDENT WORK EXAMPLES</h4>
+        <ul class="list-unstyled supporting-materials-list student-work-examples-list">
+           <li><a href="#filename3" class="nav-filename3">Score Point 4</a><i class="fa fa-trash-o"></i></li>
+        </ul>
+
+        <h4>OTHER</h4>
+        <ul class="list-unstyled supporting-materials-list other-list">
+           <li><a href="#filename4" class="nav-filename4">List of links</a><i class="fa fa-trash-o"></i></li>
+        </ul>
+          
+
+
+
+      </div><!--col-md-4-->
+      <div class="col-md-6">
+        <!-- filename 1 -->
+        <div id="filename1" class="content">
+          <dl class="dl-horizontal">
+            <dt><div class="form-horizontal"><label class="control-label">Title</label></div></dt>
+            <dd><div class="editable"><span>SAT Scoring Guide</span></div></dd>
+
+            <dt><div class="form-horizontal"><label class="control-label">Type</label></div></dt>
+            <dd>
+               <div class="dropdown">
+                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                    Scoring Guide
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Rubric</a></li>
+                    <li role="presentation" class="active"><a role="menuitem" tabindex="-1" href="#">Scoring Guide</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Student Materials</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Student Work Examples</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Other</a></li>
+                  </ul>
+                </div>
+            </dd>
+
+            <dt>File Name</dt>
+            <dd>scoring_2012-2013.pdf</dd>
+
+            <dt>File Size</dt>
+            <dd>81.11kb</dd>
+          </dl>
+
+            <embed src="https://satonlinecourse.collegeboard.org/SR/digital_assets/pdfs/eri/scoring_2012-2013.pdf" width="800" height="700">
+
+        </div><!-- //end of filename 1 -->
+
+
+        <div id="filename2" class="content">
+          <dl class="dl-horizontal">
+            <dt><div class="form-horizontal"><label class="control-label">Title</label></div></dt>
+            <dd><div class="editable"><span>Scoring Guide 2</span></div></dd>
+            
+            <dt><div class="form-horizontal"><label class="control-label">Type</label></div></dt>
+            <dd>
+               <div class="dropdown">
+                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                    Scoring Guide
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Rubric</a></li>
+                    <li role="presentation" class="active"><a role="menuitem" tabindex="-1" href="#">Scoring Guide</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Student Materials</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Student Work Examples</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Other</a></li>
+                  </ul>
+                </div>
+            </dd>
+
+          </dl>
+
+          <div class="wiggi-wiz-toolbar">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default btn-sm btn-small">
+                  Normal
+                  <span class="caret"></span>
+                </button>
+            </div>
+
+            <div class="btn-group">
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.bold}" ng-click="toolbarButtonClicked('bold')">
+              <i class="fa fa-bold"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.italic}" ng-click="toolbarButtonClicked('italic')">
+              <i class="fa fa-italic"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.underline}" ng-click="toolbarButtonClicked('underline')">
+              <i class="fa fa-underline"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.superscript}" ng-click="toolbarButtonClicked('superscript')">
+              <i class="fa fa-superscript"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.subscript}" ng-click="toolbarButtonClicked('subscript')">
+              <i class="fa fa-subscript"></i>
+              </button>
+              </div>
+              <div class="btn-group">
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.insertunorderedlist}" ng-click="toolbarButtonClicked('insertunorderedlist')">
+              <i class="fa fa-list-ul"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.insertorderedlist}" ng-click="toolbarButtonClicked('insertorderedlist')">
+              <i class="fa fa-list-ol"></i>
+              </button>
+              </div>
+              <div class="btn-group">
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.justifyLeft}" ng-click="toolbarButtonClicked('justifyLeft')">
+              <i class="fa fa-align-left"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.justifyCenter}" ng-click="toolbarButtonClicked('justifyCenter')">
+              <i class="fa fa-align-center"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.justifyRight}" ng-click="toolbarButtonClicked('justifyRight')">
+              <i class="fa fa-align-right"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-click="toolbarButtonClicked('indent')">
+              <i class="fa fa-indent"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-click="toolbarButtonClicked('outdent')">
+              <i class="fa fa-dedent"></i>
+              </button>
+            </div>
+
+            <div class="btn-group">
+              <button type="button" class="btn btn-default btn-sm btn-small" data-toggle="dropdown">
+                <i class="fa fa-text-height"></i>
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a>1.0</a></li>
+                <li><a>1.5</a></li>
+                <li><a>2.0</a></li>
+              </ul>
+            </div>
+            <div class="btn-group">
+            <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-click="toolbarButtonClicked('hr')">
+            <i class="fa fa-minus"></i>
+            </button>
+            </div>
+            <div class="btn-group">
+            <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-click="toolbarButtonClicked('image')">
+            <i class="fa fa-picture-o"></i>
+            </button>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-click="toolbarButtonClicked('table')">
+              <i class="fa fa-table"></i>
+              </button>
+            </div>
+
+            <div class="btn-group">
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-click="toolbarButtonClicked('footnotes')">
+              Footnote
+              </button>
+            </div> 
+            <div class="btn-group">
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-click="toolbarButtonClicked('corespring-video')"><i class="fa fa-film"></i>
+              </button>
+            </div> 
+            <div class="btn-group">
+            <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-click="toolbarButtonClicked('a')">
+            <i class="fa fa-link"></i>
+            </button>
+            </div>
+          </div><!--wiggi-wiz-toolbar-->
+
+          <div class="edit-wrapper">
+            <div class="editable col-md-6">
+              <h3 class="col-md-offset-2">Scoring Guide 2</h3>
+              <div class="col-md-offset-2 col-md-8">
+                <table class="table table-striped table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Score</th>
+                      <th>Criteria</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="col-md-4"><div class="scoreNumber">4</div></td>
+                      <td>The question or task is completed correctly and contains additional, unexpected, or outstanding features.</td>
+                    </tr>
+                    <tr>
+                      <td><div class="scoreNumber">3</div></td>
+                      <td>The question or task is compelted correctly; there are no mistakes.</td>
+                    </tr>
+                    <tr>
+                      <td><div class="scoreNumber">2</div></td>
+                      <td>The answer or task is partly correct; it has no big mistakes.</td>
+                    </tr>
+                    <tr>
+                      <td><div class="scoreNumber">1</div></td>
+                      <td>The student does not do the question or task, or gives an answer that has nothing to do with what is asked.</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+            </div>
+          </div>
+        </div><!--filename2-->
+      
+
+      <!-- filename 3 -->
+        <div id="filename3" class="content">
+          <dl class="dl-horizontal">
+            <dt><div class="form-horizontal"><label class="control-label">Title</label></div></dt>
+            <dd><div class="editable"><span>Score Point 4</span></div></dd>
+
+            <dt><div class="form-horizontal"><label class="control-label">Type</label></div></dt>
+            <dd>
+               <div class="dropdown">
+                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                    Student Work Examples
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Rubric</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Scoring Guide</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Student Materials</a></li>
+                    <li role="presentation" class="active"><a role="menuitem" tabindex="-1" href="#">Student Work Examples</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Other</a></li>
+                  </ul>
+                </div>
+            </dd>
+          </dl>
+
+          <img src="student-sample.png" />
+
+        </div><!-- //end of filename 3 -->
+
+      <div id="filename4" class="content">
+          <dl class="dl-horizontal">
+            <dt><div class="form-horizontal"><label class="control-label">Title</label></div></dt>
+            <dd><div class="editable"><span>List of Links</span></div></dd>
+
+            <dt>Type</dt>
+            <dd>
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                  Other
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Rubric</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Scoring Guide</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Student Materials</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Student Work Examples</a></li>
+                  <li role="presentation" class="active"><a role="menuitem" tabindex="-1" href="#">Other</a></li>
+                </ul>
+              </div>
+            </dd>
+
+          </dl>
+
+          <div class="wiggi-wiz-toolbar">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default btn-sm btn-small">
+                  Normal
+                  <span class="caret"></span>
+                </button>
+            </div>
+
+            <div class="btn-group">
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.bold}" ng-click="toolbarButtonClicked('bold')">
+              <i class="fa fa-bold"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.italic}" ng-click="toolbarButtonClicked('italic')">
+              <i class="fa fa-italic"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.underline}" ng-click="toolbarButtonClicked('underline')">
+              <i class="fa fa-underline"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.superscript}" ng-click="toolbarButtonClicked('superscript')">
+              <i class="fa fa-superscript"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.subscript}" ng-click="toolbarButtonClicked('subscript')">
+              <i class="fa fa-subscript"></i>
+              </button>
+              </div>
+              <div class="btn-group">
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.insertunorderedlist}" ng-click="toolbarButtonClicked('insertunorderedlist')">
+              <i class="fa fa-list-ul"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.insertorderedlist}" ng-click="toolbarButtonClicked('insertorderedlist')">
+              <i class="fa fa-list-ol"></i>
+              </button>
+              </div>
+              <div class="btn-group">
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.justifyLeft}" ng-click="toolbarButtonClicked('justifyLeft')">
+              <i class="fa fa-align-left"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.justifyCenter}" ng-click="toolbarButtonClicked('justifyCenter')">
+              <i class="fa fa-align-center"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-class="{active: state.justifyRight}" ng-click="toolbarButtonClicked('justifyRight')">
+              <i class="fa fa-align-right"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-click="toolbarButtonClicked('indent')">
+              <i class="fa fa-indent"></i>
+              </button>
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-click="toolbarButtonClicked('outdent')">
+              <i class="fa fa-dedent"></i>
+              </button>
+            </div>
+
+            <div class="btn-group">
+              <button type="button" class="btn btn-default btn-sm btn-small" data-toggle="dropdown">
+                <i class="fa fa-text-height"></i>
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a>1.0</a></li>
+                <li><a>1.5</a></li>
+                <li><a>2.0</a></li>
+              </ul>
+            </div>
+            <div class="btn-group">
+            <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-click="toolbarButtonClicked('hr')">
+            <i class="fa fa-minus"></i>
+            </button>
+            </div>
+            <div class="btn-group">
+            <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-click="toolbarButtonClicked('image')">
+            <i class="fa fa-picture-o"></i>
+            </button>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-click="toolbarButtonClicked('table')">
+              <i class="fa fa-table"></i>
+              </button>
+            </div>
+
+            <div class="btn-group">
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-click="toolbarButtonClicked('footnotes')">
+              Footnote
+              </button>
+            </div> 
+            <div class="btn-group">
+              <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-click="toolbarButtonClicked('corespring-video')"><i class="fa fa-film"></i>
+              </button>
+            </div> 
+            <div class="btn-group">
+            <button class="btn btn-default btn-sm btn-small" tabindex="-1" ng-click="toolbarButtonClicked('a')">
+            <i class="fa fa-link"></i>
+            </button>
+            </div>
+          </div><!--wiggi-wiz-toolbar-->
+
+          <div class="edit-wrapper">
+            <div class="editable col-md-6">
+              <ul>
+                  <li><a href="">Link 1</a></li>
+                  <li><a href="">Link 2</a></li>
+                  <li><a href="">Link 3</a></li>
+                  <li><a href="">Link 4</a></li>
+              </ul>
+            </div>
+          </div>
+        </div><!--filename4-->
+
+    
+      </div><!-- col-md-6 right side -->
+    </div><!-- supporting-materials -->
+
+    </div><!--content-wrapper-->
+</div><!-- container-fluid -->
+
+
+
+<!-- modal and dialog -->
+
+<!-- addSupportingMaterial -->
+<div class="modal fade" id="addSupportingMaterial">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Add Supporting Material</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" role="form">
+          <p>When composing an assessment item, it can be useful to include supplemental materials to assist in scoring or classroom discussion.</p>
+          
+       
+          <div class="form-group">
+              <label class="col-sm-2 control-label">Type:</label>
+              <div class="dropdown col-sm-10" id="menu-supporting-material">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" value="testing">
+                  Select Type of Supporting Material
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Rubric</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Scoring Guide</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Teacher Notes</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Handouts</a></li>
+                </ul>
+              </div>
+          </div><!--form-group-->
+
+          <div class="form-group">
+              <label class="col-sm-2 control-label">Title:</label>
+              <div class="col-sm-6">
+                <input id="title" type="text" class="form-control" placeholder="enter title">
+              </div>
+          </div><!--form-group-->
+
+
+          <div class="form-group">
+              <label class="col-sm-2 control-label">Source:</label>
+              <div class="dropdown col-sm-10" id="select-file-type">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                  <i class="fa fa-upload"></i> Upload File (.pdf, .txt., .doc)
+                </button>
+
+                OR
+                <button class="btn btn-default">create your own</button>
+              </div>
+          </div><!-- form-group -->
+
+          <button class="btn btn-info">submit</button>
+          </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- //end of addSupportingMaterial -->
+
+
+<!-- //renameQuestion  -->
+<div class="modal fade" id="renameQuestion">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Rename Question</h4>
+      </div>
+      <div class="modal-body">
+        <label>Enter a new name:</label>
+        
+        <div class="editable" id="itemName"><span>tests</span></div>
+        <br />
+        <br />
+          <button type="button" class="btn btn-primary" id="save">OK</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      <div class="modal-footer"></div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- //end of renameQuestion  -->
+
+<!-- //dialog -->
+<div id="dialog" title="Help" style="display:none">
+  <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+</div>
+<!-- //end of dialog -->
+
+
+
+
+<!-- //openFileModal -->
+<div class="modal fade" id="openFileModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Open an item</h4>
+      </div>
+      <div class="modal-body">
+        <div class="dropdown" id="menu-supporting-material">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" value="testing">
+            Select an item to open
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+            <li role="presentation" class="dropdown-header">Collection Name</li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Item 1</a></li>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation" class="dropdown-header">Collection Name</li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Item 2</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Item 3</a></li>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation" class="dropdown-header">Collection Name</li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Item 4</a></li>
+          </ul>
+        </div>
+        <br />
+          <button type="button" class="btn btn-primary" id="save">Open</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- //end of openFileModal -->
+
+<!-- copyFileModal -->
+<div class="modal fade" id="copyFileModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Copy question</h4>
+      </div>
+      <div class="modal-body">
+        <label>Enter a new question name:</label>
+        <input id="title" type="text" class="form-control" placeholder="copy of Untitled Item">
+        <br />
+        <button type="button" class="btn btn-primary" id="save">OK</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- //end of copyFileModal -->
+
+<!-- deleteFileModal -->
+<div class="modal fade" id="deleteFileModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Delete Item</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this item?</p>
+        <button type="button" class="btn btn-primary" id="save">Yes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- //end of deleteFileModal -->
+
+<!-- archiveFileModal -->
+<div class="modal fade" id="archiveFileModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Archive Item</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to archive this item?</p>
+        <button type="button" class="btn btn-primary" id="save">Yes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- //end of archiveFileModal -->
+
+<!-- scoringModal -->
+<div class="modal fade" id="scoringModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Scoring</h4>
+      </div>
+      <div class="modal-body">
+        <p>An item with only one question will receive full weight. In an item with more than one question, you can assign specific weights to each part. This feature is optional; if you don't adjust weights, weight will be evenly divided across each question.
+        </p>
+        <p>
+          <form role="form">
+            <ul class="list-inline list-unstyled">
+              <li class="col-sm-8"><label class="control-label">Multiple Choice is worth</label></li>
+              <li><input type="text" size="2" class="form-control" placeholder="1"></li>
+              <li>pts (20%)</li>
+            </ul>
+            <ul class="list-inline list-unstyled">
+              <li class="col-sm-8"><label class="control-label">Open-Ended Answer is worth</label></li>
+              <li><input type="text" size="2" class="form-control" placeholder="1"></li>
+              <li>pts (20%)</li>
+            </ul>
+
+            <ul class="list-inline list-unstyled">
+              <li class="col-sm-8"><label class="control-label">Multiple Choice is worth</label></li>
+              <li><input type="text" size="2" class="form-control" placeholder="1"></li>
+              <li>pts (20%)</li>
+            </ul>
+
+            <ul class="list-inline list-unstyled">
+              <li class="col-sm-8"><label class="control-label">Evaluate and Equation is worth</label></li>
+              <li><input type="text" size="2" class="form-control" placeholder="1"></li>
+              <li>pts (20%)</li>
+            </ul>
+
+            <ul class="list-inline list-unstyled">
+              <li class="col-sm-8"><label class="control-label">Drop Down Choice is worth</label></li>
+              <li><input type="text" size="2" class="form-control" placeholder="1"></li>
+              <li>pts (20%)</li>
+            </ul>
+          </form>
+        </p>
+
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- //end of scoringModal -->
+
+
+<!-- //config dialog -->
+<div id="configDialog" title="Short Answer" style="display:none">
+  <img src="config-panel.png"/>
+</div>
+<!-- //end of dialog -->
+</body>
+</html>
