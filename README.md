@@ -4,5 +4,7 @@ Another Rapid Prototype made from scratch with HTML, CSS, JavaScript
 
 This prototype was built to demo proposed features and design improvements to an existing internal web-based application.
 
-This prototype is not database driven and the code is static.  
+This prototype is not database driven and the code is static. 
+
+Users are welcome to experience this prototype at http://missdemilo.com/cs/des-12/.
 
