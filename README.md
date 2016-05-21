@@ -15,5 +15,6 @@ Technologies Used:
 
 Packages Used:
 - Bootstrap 
+- jQuery Extruder
 
 
